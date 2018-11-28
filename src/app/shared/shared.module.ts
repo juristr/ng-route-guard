@@ -15,6 +15,8 @@ import {
   MatSelectModule
 } from '@angular/material';
 import { SidenavComponent } from './components/sidenav/sidenav.component';
+import { RouterModule } from '@angular/router';
+import { NotAuthComponent } from './components/not-auth/not-auth.component';
 
 const materialModules = [
   MatSidenavModule,
@@ -26,8 +28,8 @@ const materialModules = [
 ];
 
 @NgModule({
-  imports: [CommonModule, ...materialModules],
-  declarations: [SidenavComponent],
+  imports: [CommonModule, RouterModule, ...materialModules],
+  declarations: [SidenavComponent, NotAuthComponent],
   exports: [SidenavComponent, ...materialModules]
 })
 export class SharedModule {}

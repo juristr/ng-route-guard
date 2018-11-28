@@ -2,16 +2,25 @@
   <div class="flexbox-item header">
     <mat-toolbar color="primary" role="header" class="app-navbar">
       <div fxFlex="50px">
-        <button type="button" class="menu-btn" mat-icon-button (click)="sidenav.toggle()">
+        <button
+          type="button"
+          class="menu-btn"
+          mat-icon-button
+          (click)="sidenav.toggle()"
+        >
           <mat-icon>menu</mat-icon>
         </button>
       </div>
-      <div fxFlex="100px">
-        {{ title }}
-      </div>
+      <div fxFlex="100px">{{ title }}</div>
       <div fxFlex fxFill></div>
       <div fxFlex="200px" fxLayoutAlign="end" class="avatar-col">
-        Hi, unknown
+        <ng-container *ngIf="authService.isLoggedIn; else: loginTmpl">
+          <button mat-button (click)="authService.logout()">Logout</button>
+        </ng-container>
+
+        <ng-template #loginTmpl>
+          <button mat-button (click)="authService.login()">Login</button>
+        </ng-template>
       </div>
     </mat-toolbar>
   </div>
@@ -22,13 +31,12 @@
         <app-sidenav></app-sidenav>
       </mat-drawer>
       <mat-drawer-content class="app-page-container">
-        Content here
+        <router-outlet></router-outlet>
       </mat-drawer-content>
     </mat-drawer-container>
   </div>
 
   <div class="flexbox-item footer">
-    &copy;2018 -
-    <a href="juristr.com">juristr.com</a>
+    &copy;2018 - <a href="juristr.com">juristr.com</a>
   </div>
 </div>
